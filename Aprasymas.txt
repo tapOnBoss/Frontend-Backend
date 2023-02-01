@@ -1,0 +1,19 @@
+Pagal uzduoti: 
+
+ Important give backend data into the frontend but as saved data in data base such as:
+
+  GET/tutorials/:id get Tutorial by id,
+  Post/tutorials add new Tutorial by id,
+  Put/tutorials/:id update Tutorial by id,
+  DELETE/tutorials/:id remove Tutorial by id,
+  DELETE/tutorials/ remove all Tutorials,
+  GET/tutorials/published find all published Tutorials,
+  GET/tutorials?title=[kw] find all tutorials which title contains 'kw'.
+
+In Separate files strating in main forlder called as FRONTEND-BACKEND.
+
++
+organizavimas pagal gnyga Romeo ir Juljieta :D ...
++
+CRUD su irasu Book
+.
