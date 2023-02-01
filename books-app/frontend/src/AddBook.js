@@ -1,51 +1,80 @@
 import React, { useState } from 'react'
 
-const AddBook = () =>{
+const AddBook = () => {
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
-    const [genre, setGenre] = useState('')
     const [publicationYear, setPublicationYear] = useState('')
     const [pages, setPages] = useState('')
+    const [genre, setGenre] = useState('')
 
-    const onSubmit = e => {
-        e.preventDefault()
+    const handleSubmit = e => {
+    e.preventDefault()
 
-        const book = { title, author, publicationYear, pages }
-
-        fetch('/api/books', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(book)
+    fetch('/api/books', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+        title,
+        author,
+        genre,
+        publicationYear,
+        pages
         })
-        .then(res => res.json())
-        .then(book => console.log(book))
-        .catch(err => console.error(err))
-    }
+    })
+    .then(res => res.json())
+    .then(() => {
+        setTitle('')
+        setAuthor('')
+        setGenre('')
+        setPublicationYear('')
+        setPages('')
+        console.log('Book added successfully')
+    })
+    .catch(err => console.error(err))
+}
 
-    return(
-        <form onSubmit={onSubmit}>
-            <div>
-                <label htmlFor="title">Title:</label>
-                <input type="text" id="title" onChange={e => setTitle(e.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="author">Author:</label>
-                <input type="text" id="author" onChange={e => setAuthor(e.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="genre">Genre:</label>
-                <input type="text" id="genre" onChange={e => setGenre(e.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="publicationYear">PublicationYear:</label>
-                <input type="text" id="publicationYear" onChange={e => setPublicationYear(e.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="pages">Pages:</label>
-                <input type="text" id="pages" onChange={e => setPages(e.target.value)} />
-            </div>
-            <button type="submit">Add Book</button>
-        </form>
+return (
+    <form onSubmit={handleSubmit}>
+        <label htmlFor='title'>Title</label>
+        <input
+        type='text'
+        id='title'
+        value={title}
+        onChange={e => setTitle(e.target.value)}/>
+
+        <label htmlFor='author'>Author</label>
+        <input
+        type='text'
+        id='author'
+        value={author}
+        onChange={e => setAuthor(e.target.value)}/>
+
+        <label htmlFor='genre'>Genre</label>
+        <input
+        type='text'
+        id='genre'
+        value={genre}
+        onChange={e => setGenre(e.target.value)}/>
+
+        <label htmlFor='publicationYear'>Publication Year</label>
+        <input
+        type='text'
+        id='publicationYear'
+        value={publicationYear}
+        onChange={e => setPublicationYear(e.target.value)}/>
+
+        <label htmlFor='pages'>Pages</label>
+        <input
+        type='text'
+        id='pages'
+        value={pages}
+        onChange={e => setPages(e.target.value)}/>
+
+        <button type='submit'>Add Book</button>
+    </form>
     )
 }
+
 export default AddBook
