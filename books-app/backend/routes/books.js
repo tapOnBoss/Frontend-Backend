@@ -1,4 +1,4 @@
-// REST API based by cshap programming language !!!
+// REST API
 const express = require('express')
 const Book = require('../models/book')
 const router = express.Router()
